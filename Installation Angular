@@ -1,0 +1,10 @@
+1, npm i @angular/cli -g
+2, type i cmd 'ng version' to verify the version
+
+
+-------------------------Create Application------------------------------
+To create empty workspace
+1, ng new "WorkspaceName" --skip-install
+
+To create templated Application
+1, ng new "your-app-name"
