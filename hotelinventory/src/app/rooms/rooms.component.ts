@@ -25,6 +25,7 @@ export class RoomsComponent {
         'https://assets-global.website-files.com/5c6d6c45eaa55f57c6367749/65045f093c166fdddb4a94a5_x-65045f0266217.webp',
       checkinTime: new Date('31-Oct-2023'),
       checkoutTime: new Date('1-Nov-2023'),
+      rating: 4.6,
     },
     {
       roomnumber: 2,
@@ -35,6 +36,7 @@ export class RoomsComponent {
         'https://assets-global.website-files.com/5c6d6c45eaa55f57c6367749/65045f093c166fdddb4a94a5_x-65045f0266217.webp',
       checkinTime: new Date('31-Oct-2023'),
       checkoutTime: new Date('1-Nov-2023'),
+      rating: 4.7,
     },
     {
       roomnumber: 3,
@@ -45,6 +47,7 @@ export class RoomsComponent {
         'https://assets-global.website-files.com/5c6d6c45eaa55f57c6367749/65045f093c166fdddb4a94a5_x-65045f0266217.webp',
       checkinTime: new Date('31-Oct-2023'),
       checkoutTime: new Date('1-Nov-2023'),
+      rating: 4.8,
     },
   ];
 

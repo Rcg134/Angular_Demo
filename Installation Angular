@@ -18,3 +18,10 @@ Install angular language service for intelesense:
 
 Create Component:
 -ng g(generate) c(component) (name of your component) = ng g c samplename
+
+
+-------------------------Add Bootsrap----------------
+Go to https://valor-software.com/ngx-bootstrap/#/documentation
+
+Install bootsrap in your local project:
+-ng add ngx-bootstrap

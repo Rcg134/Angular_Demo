@@ -26,6 +26,7 @@
       <th>Room photos</th>
       <th>Room CheckIn</th>
       <th>Room CheckOut</th>
+      <th>Rating</th>
     </tr>
     <tr
       [ngClass]="e ? 'Even' : 'Odd'"
@@ -42,6 +43,7 @@
       </td>
       <td>{{ room.checkinTime | date : "MM/dd/yyyy" }}</td>
       <td>{{ room.checkoutTime | date : "MM/dd/yyyy" }}</td>
+      <td>{{ room.rating | number : '1.1-3' }}</td>
     </tr>
   </table>
 </div>
