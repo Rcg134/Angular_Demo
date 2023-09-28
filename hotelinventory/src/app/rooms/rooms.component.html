@@ -3,7 +3,7 @@
 <div [hidden]="hiderooms">
   Number of rooms: {{ numberofrooms }}
   <!-- <div [innerText]="numberofrooms"></div> -->
-  <button (click)="count()">Toggle</button>
+  <button class="btn btn-primary" (click)="count()">Toggle</button>
 </div>
 
 <div
@@ -13,37 +13,10 @@
   No rooms Available
 </div>
 
-<div *ngIf="rooms.availableRooms > 0">
+<div *ngIf="rooms.availableRooms > 0" class="table-responsive">
   Room List
-  <table>
-    <tr>
-      <th>Index</th>
-      <th>Even/Odd</th>
-      <th>Room Number</th>
-      <th>Room Type</th>
-      <th>Room Amenities</th>
-      <th>Room Price</th>
-      <th>Room photos</th>
-      <th>Room CheckIn</th>
-      <th>Room CheckOut</th>
-      <th>Rating</th>
-    </tr>
-    <tr
-      [ngClass]="e ? 'Even' : 'Odd'"
-      *ngFor="let room of roomlist; let e = even; let o = odd; let i = index"
-    >
-      <td>{{ i }}</td>
-      <td>{{ e ? "Even" : "Odd" }}</td>
-      <td>{{ room.roomnumber }}</td>
-      <td>{{ room.roomType }}</td>
-      <td>{{ room.amenities | uppercase }}</td>
-      <td>{{ room.price | currency : "PHP" }}</td>
-      <td>
-        <img src="{{ room.photos }}" alt="" width="100px" height="100px" />
-      </td>
-      <td>{{ room.checkinTime | date : "MM/dd/yyyy" }}</td>
-      <td>{{ room.checkoutTime | date : "MM/dd/yyyy" }}</td>
-      <td>{{ room.rating | number : '1.1-3' }}</td>
-    </tr>
-  </table>
+  <ake-room-list
+    (selectedRoom)="selectRoom($event)"
+    [rooms]="roomlist"
+  ></ake-room-list>
 </div>
