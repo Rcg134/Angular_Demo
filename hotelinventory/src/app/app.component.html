@@ -1,9 +1,14 @@
-<h1>Hello Ake</h1>
+<ake-header>More Details Here</ake-header>
 
 <div [ngSwitch]="role">
-  <div *ngSwitchCase="'User'">Hello User</div>
+  <div *ngSwitchCase="'User'">
+    Hello User
+    <ake-room-list-second></ake-room-list-second>
+  </div>
   <div *ngSwitchCase="'Admin'">
     <ake-rooms></ake-rooms>
   </div>
   <div *ngSwitchDefault>You dont have User</div>
 </div>
+
+<ake-footer>More Details Here</ake-footer>

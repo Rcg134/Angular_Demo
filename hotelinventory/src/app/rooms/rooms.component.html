@@ -1,5 +1,3 @@
-<p>Welcome to {{ hotelName }}</p>
-
 <div [hidden]="hiderooms">
   Number of rooms: {{ numberofrooms }}
   <!-- <div [innerText]="numberofrooms"></div> -->
@@ -13,10 +11,14 @@
   No rooms Available
 </div>
 
+<div>
+  <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
+</div>
+
 <div *ngIf="rooms.availableRooms > 0" class="table-responsive">
-  Room List
   <ake-room-list
     (selectedRoom)="selectRoom($event)"
     [rooms]="roomlist"
+    [message_Update]="message"
   ></ake-room-list>
 </div>

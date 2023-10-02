@@ -6,9 +6,19 @@ import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoomListComponent } from './rooms/room-list/room-list.component';
+import { HeaderComponent } from './header/header.component';
+import { RoomListSecondComponent } from './room-list-second/room-list-second.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, RoomsComponent, RoomListComponent],
+  declarations: [
+    AppComponent,
+    RoomsComponent,
+    RoomListComponent,
+    HeaderComponent,
+    RoomListSecondComponent,
+    FooterComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],

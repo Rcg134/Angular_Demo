@@ -28,3 +28,7 @@ Install bootsrap in your local project:
 After installion
 -add bootsrapmin.css
 -add bootsrapmin.css in "STYLE.SCSS" or add this to angular.json
+
+-------------------------Debugging--------------------
+-go to Developer Tools (Ctrl-Shift-i) of Chrome ,click 3 dots , look for 'More Tools' then click rendering
+-Install extention in google chrome 'Angular Dev Tools'
