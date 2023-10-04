@@ -100,7 +100,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     //Use this so that whenever there is a changes, there are only specific components that is affected
     // passing new instance always
     this.roomlist = [...this.roomlist, addRoom];
-    this.message = 'inserted';
+    // this.message = 'inserted';
   }
 
   // after  ngOnInit() this aftervewInit will be next

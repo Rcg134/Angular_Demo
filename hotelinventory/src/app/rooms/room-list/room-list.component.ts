@@ -13,7 +13,7 @@ import { RoomList } from '../rooms';
   selector: 'ake-room-list',
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class RoomListComponent implements OnChanges {
   //Recieve value from parent components , waiting for some components to pass the data
@@ -26,8 +26,8 @@ export class RoomListComponent implements OnChanges {
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
   }
-
+  // can only apply if component has input property
   ngOnChanges(changes: SimpleChanges): void {
-    //it ise if there are changes in this components
+    //it use if there are changes in this components
   }
 }

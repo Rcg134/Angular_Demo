@@ -9,6 +9,7 @@ import { RoomListComponent } from './rooms/room-list/room-list.component';
 import { HeaderComponent } from './header/header.component';
 import { RoomListSecondComponent } from './room-list-second/room-list-second.component';
 import { FooterComponent } from './footer/footer.component';
+import { BodyComponent } from './body/body.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     RoomListSecondComponent,
     FooterComponent,
+    BodyComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
