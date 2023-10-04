@@ -29,6 +29,7 @@ export class RoomListSecondComponent implements OnInit, AfterViewInit {
     this.roomTable.nativeElement.innerText = 'wow';
   }
   ngAfterViewInit(): void {
-    console.log(this.roomIterate);
+    // this.roomIterate.forEach((row) => {
+    // });
   }
 }

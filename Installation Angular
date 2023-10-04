@@ -19,6 +19,10 @@ Install angular language service for intelesense:
 Create Component:
 -ng g(generate) c(component) (name of your component) = ng g c samplename
 
+Create Services
+-ng g(generate) s(service) (name of service) =
+ng g s samplename
+
 -------------------------Add Bootsrap----------------
 Go to https://valor-software.com/ngx-bootstrap/#/documentation
 
