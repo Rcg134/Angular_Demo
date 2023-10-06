@@ -10,6 +10,9 @@ import { HeaderComponent } from './header/header.component';
 import { RoomListSecondComponent } from './room-list-second/room-list-second.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
+
+import { HttpClientModule } from '@angular/common/http'; // FOR API
 
 @NgModule({
   declarations: [
@@ -21,8 +24,19 @@ import { BodyComponent } from './body/body.component';
     FooterComponent,
     BodyComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule, // setting up http client module
+  ],
+  providers: [
+    {
+      //register your APP config provider
+      provide: APP_SERVICE_CONFIG,
+      useValue: APP_CONFIG,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -23,16 +23,21 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   roomlist: RoomList[] = [];
 
   //service variable must be private so that it cant access in template
-  constructor(roomsService: RoomsService) {
+  //inject service
+  constructor(private roomsService: RoomsService) {
     this.roomlist = roomsService.getrooms();
   }
 
   // to have an access to header component (Initialization)
-  @ViewChild(HeaderComponent)
-  headercomponent: HeaderComponent = new HeaderComponent();
+  // @ViewChild(HeaderComponent)
+  // headercomponent: HeaderComponent = new HeaderComponent();
 
   ngOnInit(): void {
-    this.headercomponent;
+    // const user = {
+    //   name: 'John',
+    //   email: 'john@example.com',
+    // };
+    // localStorage.setItem('user', JSON.stringify(user));
   }
 
   toggle() {

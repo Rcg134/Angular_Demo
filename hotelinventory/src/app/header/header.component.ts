@@ -1,4 +1,5 @@
-import { Component , ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Self } from '@angular/core';
+import { RoomsService } from '../rooms/services/rooms.service';
 
 @Component({
   selector: 'ake-header',
@@ -8,4 +9,6 @@ import { Component , ChangeDetectionStrategy } from '@angular/core';
 })
 export class HeaderComponent {
   header: string = 'Header';
+
+  constructor() {}
 }

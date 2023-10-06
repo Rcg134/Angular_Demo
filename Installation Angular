@@ -36,3 +36,6 @@ After installion
 -------------------------Debugging--------------------
 -go to Developer Tools (Ctrl-Shift-i) of Chrome ,click 3 dots , look for 'More Tools' then click rendering
 -Install extention in google chrome 'Angular Dev Tools'
+
+-------------------------Create Environment folder for API--------------
+-ng generate environments

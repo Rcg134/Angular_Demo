@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { RoomList } from '../rooms';
+import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
+import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 
 //services is use to break your code depends on its purpose to make component.ts minimal
-// all the business logic should be here
+// all the business logic should be here in service
 @Injectable({
   providedIn: 'root',
 })
 export class RoomsService {
-  constructor() {}
+  constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig) {
+    console.log(this.config.apiEndpoint);
+  }
   roomlist: RoomList[] = [
     {
       roomnumber: 1,
