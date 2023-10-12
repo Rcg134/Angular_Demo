@@ -1,0 +1,28 @@
+<h1>{{ Title }}</h1>
+
+<button class="btn btn-primary" (click)="addStudentEmit()">Add Student</button>
+
+<table class="table table-dark table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>age</th>
+      <th>subjects</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let student of studentsList; let i = index">
+    <tr (click)="selectStudent(student)">
+      <td>{{ i }}</td>
+      <td>{{ student.name }} {{ student.middleName }} {{ student.surname }}</td>
+      <td>{{ student.age }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let subject of student.subjects">
+            {{ subject.subjectName }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

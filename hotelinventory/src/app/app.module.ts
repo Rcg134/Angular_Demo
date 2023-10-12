@@ -12,7 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
 
-import { HttpClientModule } from '@angular/common/http'; // FOR API
+import { HttpClientModule } from '@angular/common/http';
+import { StudentlistComponent } from './studentlist/studentlist.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http'; // FOR API
     RoomListSecondComponent,
     FooterComponent,
     BodyComponent,
+    StudentlistComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import {
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { StudentList } from './student';
 
 @Component({
   selector: 'ake-rooms',
@@ -21,7 +22,6 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   message: string = 'Room List';
   rooms: Room = { availableRooms: 10, bookedRooms: 5, totalRooms: 15 };
   roomlist: RoomList[] = [];
-
 
   //service variable must be private so that it cant access in template
   //inject service
@@ -45,7 +45,6 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     let hideroom = this.hiderooms === true ? false : true;
 
     this.hiderooms = hideroom;
-    
   }
 
   count() {
@@ -54,6 +53,10 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   selectRoom(room: RoomList) {
     alert(room.roomnumber);
+  }
+
+  selectStudent(student: StudentList) {
+    alert(student.id);
   }
 
   addRoom() {
