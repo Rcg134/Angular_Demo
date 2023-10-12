@@ -22,6 +22,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   rooms: Room = { availableRooms: 10, bookedRooms: 5, totalRooms: 15 };
   roomlist: RoomList[] = [];
 
+
   //service variable must be private so that it cant access in template
   //inject service
   constructor(private roomsService: RoomsService) {
@@ -44,6 +45,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     let hideroom = this.hiderooms === true ? false : true;
 
     this.hiderooms = hideroom;
+    
   }
 
   count() {

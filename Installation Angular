@@ -39,3 +39,8 @@ After installion
 
 -------------------------Create Environment folder for API--------------
 -ng generate environments
+
+
+--------------------------Proxy for back end to consume API----------------
+-https://angular.io/guide/build#proxying-to-a-backend-server
+
