@@ -24,4 +24,17 @@ export class StudentService {
   addStudent(student: StudentList) {
     return this.http.post<ResponseService>('/api/Student/AddStudent', student);
   }
+
+  updateStudent(id: number, student: StudentList) {
+    return this.http.put<ResponseService>(
+      `/api/Student/UpdateStudent/${id}`,
+      student
+    );
+  }
+
+  deleteStudent(id: number) {
+    return this.http.delete<ResponseService>(
+      `/api/Student/DeleteStudent/${id}`
+    );
+  }
 }
