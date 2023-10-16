@@ -11,3 +11,8 @@ export interface StudentList {
 export interface Subject {
   subjectName: string;
 }
+
+export interface StudentDataList {
+  count: number;
+  studentDetails?: StudentList[];
+}

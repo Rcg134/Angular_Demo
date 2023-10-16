@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentList } from '../rooms/student';
+import { StudentDataList, StudentList } from '../rooms/student';
 import { StudentService } from '../rooms/services/student.service';
 import { Observable, map, switchMap } from 'rxjs';
 
@@ -9,30 +9,25 @@ import { Observable, map, switchMap } from 'rxjs';
   styleUrls: ['./studentlist.component.scss'],
 })
 export class StudentlistComponent implements OnInit {
-  studentsList$: Observable<StudentList[]> | undefined;
-  studentGetCount$: Observable<number> | undefined;
+  studentsList$: Observable<StudentDataList> | undefined;
   Title = 'Student List';
 
   getStudent$ = this.stdServ.getStudent();
-
-  studentCount$ = this.getStudent$.pipe(map((std) => std.length));
 
   constructor(private stdServ: StudentService) {}
 
   ngOnInit(): void {
     this.studentsList$ = this.getStudent$;
-    this.studentGetCount$ = this.studentCount$;
   }
 
   loadStudents(): void {
     // this.stdServ.getStudent().subscribe((student) => {
     //   // this.studentsList = student;
     // });
+    // switch map is use to remove the recent subscription and change it to a new one
     this.studentsList$ = this.stdServ
       .getStudent()
       .pipe(switchMap(() => this.getStudent$));
-
-    this.studentGetCount$ = this.studentCount$;
   }
 
   addStudentEmit() {
@@ -44,19 +39,10 @@ export class StudentlistComponent implements OnInit {
       subjectId: 2,
     };
 
-    this.stdServ.addStudent(studentadd).subscribe(
-      (response) => {
-        alert(response.message);
-        this.loadStudents();
-      },
-      (error) => {
-        if (error.status === 400) {
-          alert(error.error.error);
-        } else {
-          alert(error.error.error);
-        }
-      }
-    );
+    this.stdServ.addStudent(studentadd).subscribe((response) => {
+      alert(response.message);
+      this.loadStudents();
+    });
   }
 
   updateStudentEmit() {
@@ -74,11 +60,7 @@ export class StudentlistComponent implements OnInit {
         this.loadStudents();
       },
       (error) => {
-        if (error.status === 400) {
-          alert(error.error.error);
-        } else {
-          alert(error.error.error);
-        }
+        alert(error.error.error);
       }
     );
   }
@@ -87,16 +69,10 @@ export class StudentlistComponent implements OnInit {
 
   selectStudent(student: StudentList) {
     if (student.id !== undefined) {
-      this.stdServ.deleteStudent(student.id).subscribe(
-        (response) => {
-          alert(response.message);
-          this.loadStudents();
-        },
-        (error) => {
-          // Handle the error using the service's error handling logic
-          alert(error);
-        }
-      );
+      this.stdServ.deleteStudent(student.id).subscribe((response) => {
+        alert(response.message);
+        this.loadStudents();
+      });
     }
   }
 }

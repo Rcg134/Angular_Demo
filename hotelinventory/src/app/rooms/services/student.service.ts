@@ -1,10 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
-import { StudentList } from '../student';
+import { StudentDataList, StudentList } from '../student';
 import { RoomList } from '../rooms';
 import { ResponseService } from './response';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +23,7 @@ export class StudentService {
   ) {}
 
   getStudent() {
-    return this.http.get<StudentList[]>('/api/Student/GetStudent');
+    return this.http.get<StudentDataList>('/api/Student/GetStudent');
   }
 
   addStudent(student: StudentList) {

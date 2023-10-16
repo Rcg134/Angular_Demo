@@ -12,8 +12,9 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StudentlistComponent } from './studentlist/studentlist.component';
+import { RequestHttpInterceptor } from './request-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,12 @@ import { StudentlistComponent } from './studentlist/studentlist.component';
       //register your APP config provider
       provide: APP_SERVICE_CONFIG,
       useValue: APP_CONFIG,
+    },
+    {
+      // register iterceptor
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestHttpInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
