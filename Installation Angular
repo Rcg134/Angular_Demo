@@ -46,3 +46,6 @@ After installion
 
 -ng g interceptor (sampename)
 -after that register it to app module
+
+--------------------------------Set up Router----------------------
+-Import router module in app module

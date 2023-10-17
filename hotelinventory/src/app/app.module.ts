@@ -15,6 +15,7 @@ import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StudentlistComponent } from './studentlist/studentlist.component';
 import { RequestHttpInterceptor } from './request-http.interceptor';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RequestHttpInterceptor } from './request-http.interceptor';
     FooterComponent,
     BodyComponent,
     StudentlistComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
