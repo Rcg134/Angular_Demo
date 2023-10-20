@@ -16,7 +16,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StudentlistComponent } from './studentlist/studentlist.component';
 import { RequestHttpInterceptor } from './request-http.interceptor';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
+import { SubbodyComponent } from './subbody/subbody.component';
+import { MatButtonModule } from '@angular/material/button';
+import { AppNavComponent } from './app-nav/app-nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,12 +36,21 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     BodyComponent,
     StudentlistComponent,
     SidebarComponent,
+    SubbodyComponent,
+    AppNavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule, // setting up http client module
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
   ],
   providers: [
     {

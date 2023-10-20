@@ -4,6 +4,8 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { StudentlistComponent } from './studentlist/studentlist.component';
 import { BodyComponent } from './body/body.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SubbodyComponent } from './subbody/subbody.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'Sidebar',
     component: SidebarComponent,
+  },
+  {
+    path: 'SubBody',
+    component: SubbodyComponent,
+  },
+  {
+    path: '',
+    component: SubbodyComponent,
   },
 ];
 
