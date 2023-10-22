@@ -6,6 +6,8 @@ import { BodyComponent } from './body/body.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SubbodyComponent } from './subbody/subbody.component';
 import { AppComponent } from './app.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { StudentInformationComponent } from './studentlist/student-information/student-information.component';
 
 const routes: Routes = [
   {
@@ -29,8 +31,20 @@ const routes: Routes = [
     component: SubbodyComponent,
   },
   {
+    path: 'studentInformation/:id',
+    component: StudentInformationComponent,
+  },
+  {
+    path: '404',
+    component: NotfoundComponent,
+  },
+  {
     path: '',
     component: SubbodyComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
   },
 ];
 

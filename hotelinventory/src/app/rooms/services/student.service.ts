@@ -42,4 +42,8 @@ export class StudentService {
       `/api/Student/DeleteStudent/${id}`
     );
   }
+
+  searchStudent(id: number) {
+    return this.http.get<StudentList>(`/api/Student/SearchStudent/${id}`);
+  }
 }

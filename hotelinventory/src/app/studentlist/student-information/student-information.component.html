@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h1>Student Information</h1></mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+    <div *ngIf="studentinfo$ | async as studentinfo">
+      <h2>
+        {{ studentinfo.surname }} {{ studentinfo.name }}
+        {{ studentinfo.middleName }}
+      </h2>
+      <p>Age: {{ studentinfo.age }}</p>
+      <p>Subject ID: {{ studentinfo.subjectId }}</p>
+
+      <!-- If you have an array of subjects -->
+      <ul>
+        <li *ngFor="let subject of studentinfo.subjects">
+          {{ subject.subjectName }}
+        </li>
+      </ul>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions align="end">
+    <button mat-button>Cancel</button>
+    <button mat-button>Save</button>
+  </mat-card-actions>
+</mat-card>

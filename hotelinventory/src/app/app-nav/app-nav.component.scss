@@ -7,11 +7,19 @@
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  background: linear-gradient(to bottom, rgb(214, 82, 34), rgb(255, 165, 0));
+  color: white;
 }
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+  background: linear-gradient(to bottom, rgb(214, 82, 34), rgb(255, 165, 0));
+
+}
+
+.mattoolbar{
+  background: linear-gradient(to bottom, rgb(214, 82, 34), rgb(255, 165, 0));
+
 }

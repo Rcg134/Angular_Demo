@@ -6,14 +6,19 @@ import { map, shareReplay } from 'rxjs/operators';
 @Component({
   selector: 'ake-app-nav',
   templateUrl: './app-nav.component.html',
-  styleUrls: ['./app-nav.component.scss']
+  styleUrls: ['./app-nav.component.scss'],
 })
 export class AppNavComponent {
   private breakpointObserver = inject(BreakpointObserver);
-
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  showSubMenu: boolean = false;
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
+
+  toggleSubMenu() {
+    this.showSubMenu = !this.showSubMenu;
+  }
 }
