@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header alert alert-primary">ADD STUDENT</div>
+  <div class="card-body">
+    <form>
+      <div class="row">
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Middle Name</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Surname </mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>AGE </mat-label>
+          <input matInput type="number" />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Select Subject</mat-label>
+          <mat-select>
+            <mat-option value="1">Math</mat-option>
+            <mat-option value="2">English</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button class="col-md-1" mat-raised-button color="primary">SAVE</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -55,3 +55,10 @@ Go to https://material.angular.io/
 
 --------------------------------Set up Router----------------------
 -Import router module in app module
+
+**\*\***\***\*\***--------------------------FORMS-------------------**\*\*\*\***\*\*\*\***\*\*\*\***
+
+-TEMPLATE DRIVEN FORMS
+1, import FormsModule
+
+-REACTIVE FORMS

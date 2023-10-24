@@ -19,7 +19,16 @@
 
 }
 
-.mattoolbar{
+.themeOrange{
   background: linear-gradient(to bottom, rgb(214, 82, 34), rgb(255, 165, 0));
 
 }
+
+mat-expansion-panel-header {
+  background: linear-gradient(to bottom, rgb(214, 82, 34), rgb(255, 165, 0));
+}
+
+mat-list-item{
+  background: linear-gradient(to bottom, rgb(214, 82, 34), rgb(255, 165, 0));
+}
+

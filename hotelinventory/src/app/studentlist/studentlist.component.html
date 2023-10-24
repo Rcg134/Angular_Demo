@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content>
     <h1>{{ Title }}</h1>
-    <button mat-raised-button color="primary" (click)="addStudentEmit()">
+    <button mat-raised-button color="primary" [routerLink]="'/StudentCreate'">
       Add Student
     </button>
     <button class="btn btn-warning" (click)="updateStudentEmit()">

@@ -9,6 +9,7 @@ export interface StudentList {
 }
 
 export interface Subject {
+  id: number;
   subjectName: string;
 }
 

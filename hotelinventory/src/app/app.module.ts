@@ -29,6 +29,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { StudentInformationComponent } from './studentlist/student-information/student-information.component';
+import { StudentCreateComponent } from './studentlist/student-create/student-create.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -45,6 +50,7 @@ import { StudentInformationComponent } from './studentlist/student-information/s
     AppNavComponent,
     NotfoundComponent,
     StudentInformationComponent,
+    StudentCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,10 @@ import { StudentInformationComponent } from './studentlist/student-information/s
     MatCardModule,
     MatExpansionModule,
     MatMenuModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   providers: [
     {

@@ -1,16 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
-    class="sidenav mattoolbar"
+    class="sidenav themeOrange"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>ATEC</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'Rooms'">Rooms</a>
-      <a mat-list-item [routerLink]="'Student'">Student List</a>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>STUDENT</mat-panel-title>
+        </mat-expansion-panel-header>
+        <a mat-list-item [routerLink]="'Student'">Student List</a>
+        <!-- Add more room links as needed -->
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>ROOMS</mat-panel-title>
+        </mat-expansion-panel-header>
+        <a mat-list-item [routerLink]="'Rooms'">Rooms List</a>
+        <!-- Add more room links as needed -->
+      </mat-expansion-panel>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,9 +36,13 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>hotelinventory</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+
+    <div class="card">
+      <div class="card-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
