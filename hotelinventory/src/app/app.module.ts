@@ -3,20 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RoomListComponent } from './rooms/room-list/room-list.component';
-import { HeaderComponent } from './header/header.component';
-import { RoomListSecondComponent } from './room-list-second/room-list-second.component';
-import { FooterComponent } from './footer/footer.component';
-import { BodyComponent } from './body/body.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { StudentlistComponent } from './studentlist/studentlist.component';
 import { RequestHttpInterceptor } from './request-http.interceptor';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { SubbodyComponent } from './subbody/subbody.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AppNavComponent } from './app-nav/app-nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,35 +19,30 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatMenuModule } from '@angular/material/menu';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { StudentInformationComponent } from './studentlist/student-information/student-information.component';
-import { StudentCreateComponent } from './studentlist/student-create/student-create.component';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './login/login.component';
+import { EmailvalidatorDirective } from './validators/emailvalidator/emailvalidator.directive';
+// import { StudentModule } from './modules/student/student.module'; //For lazy loading
+import { StudentRoutingModule } from './modules/student/student-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent,
-    RoomListComponent,
-    HeaderComponent,
-    RoomListSecondComponent,
-    FooterComponent,
-    BodyComponent,
-    StudentlistComponent,
-    SidebarComponent,
-    SubbodyComponent,
     AppNavComponent,
     NotfoundComponent,
-    StudentInformationComponent,
-    StudentCreateComponent,
+    LoginComponent,
+    EmailvalidatorDirective,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    AppRoutingModule,
+    // StudentModule,
+    AppRoutingModule, // if you have child route or custome module , this parent module must always place at the end of this imports
+    StudentRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule, // setting up http client module
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,

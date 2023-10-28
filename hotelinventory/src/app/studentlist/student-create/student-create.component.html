@@ -1,40 +1,102 @@
 <div class="card">
   <div class="card-header alert alert-primary">ADD STUDENT</div>
   <div class="card-body">
-    <form>
+    <div *ngIf="SuccessMessage !== undefined" class="row">
+      <div class="col-12-md">
+        <div class="alert alert-success" role="alert">
+          <strong>{{ SuccessMessage }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM BODY -->
+    <form #studentForm="ngForm" (ngSubmit)="addStudent(studentForm)">
       <div class="row">
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput />
+          <input
+            #name="ngModel"
+            akeEmailvalidator
+            matInput
+            required="required"
+            [(ngModel)]="studentModel.name"
+            name="name"
+          />
+          <mat-error *ngIf="name?.invalid && (name.dirty || name.touched)">
+            <ng-container *ngIf="name?.errors?.['required']">
+              The field is required.
+            </ng-container>
+            <ng-container *ngIf="name?.errors?.['validname']">
+              The name is invalid.
+            </ng-container>
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
           <mat-label>Middle Name</mat-label>
-          <input matInput />
+          <input
+            matInput
+            required="required"
+            [(ngModel)]="studentModel.middleName"
+            name="middleName"
+          />
         </mat-form-field>
 
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
           <mat-label>Surname </mat-label>
-          <input matInput />
+          <input
+            matInput
+            required="required"
+            [(ngModel)]="studentModel.surname"
+            name="surname"
+          />
         </mat-form-field>
       </div>
 
       <div class="row">
-        <mat-form-field class="col-md-4" appearance="outline">
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
           <mat-label>AGE </mat-label>
-          <input matInput type="number" />
+          <input
+            #age="ngModel"
+            matInput
+            type="number"
+            required
+            [(ngModel)]="studentModel.age"
+            name="age"
+            max="100"
+          />
+          <mat-error *ngIf="age.invalid && (age.dirty || age.touched)">
+            Age must be less than or equal to 100.
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="col-md-4" appearance="outline">
           <mat-label>Select Subject</mat-label>
-          <mat-select>
-            <mat-option value="1">Math</mat-option>
-            <mat-option value="2">English</mat-option>
+          <mat-select
+            required
+            [(ngModel)]="studentModel.subjectId"
+            name="subjectName"
+          >
+            <mat-option
+              *ngFor="let subject of SubjectList$ | async"
+              [value]="subject.id"
+              >{{ subject.subjectName }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
       </div>
       <div class="button-row">
-        <button class="col-md-1" mat-raised-button color="primary">SAVE</button>
+        <button
+          [disabled]="
+            studentForm.invalid || !studentModel.age || !studentModel.subjectId
+          "
+          type="submit"
+          class="col-md-1"
+          mat-raised-button
+          color="primary"
+        >
+          SAVE
+        </button>
       </div>
     </form>
   </div>

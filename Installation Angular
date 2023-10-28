@@ -62,3 +62,16 @@ Go to https://material.angular.io/
 1, import FormsModule
 
 -REACTIVE FORMS
+
+-CREATE DIRECTIVES
+ng g d (name)
+
+-------------------------------------------MODULE-------------------------------------------
+-Create Module
+ng g m (name) --routing
+
+**\*\*\*\***\*\*\*\***\*\*\*\***\*\***\*\*\*\***\*\*\*\***\*\*\*\***DEPLOYMENT\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***
+ng build -c=production
+
+-LAZY LOADING
+1, Isolote all components that is related to each other , and exclude reusable components

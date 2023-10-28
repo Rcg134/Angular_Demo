@@ -6,10 +6,8 @@ import {
 import { Injectable, Inject } from '@angular/core';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
-import { StudentDataList, StudentList } from '../student';
-import { RoomList } from '../rooms';
+import { StudentDataList, StudentList, Subject } from '../student';
 import { ResponseService } from './response';
-import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,5 +43,9 @@ export class StudentService {
 
   searchStudent(id: number) {
     return this.http.get<StudentList>(`/api/Student/SearchStudent/${id}`);
+  }
+
+  getCategory() {
+    return this.http.get<Subject[]>('/api/Student/GetSubject');
   }
 }
