@@ -75,3 +75,11 @@ ng build -c=production
 
 -LAZY LOADING
 1, Isolote all components that is related to each other , and exclude reusable components
+
+-Create Command for lazy loading
+ng g n (name) --route==Student --routing --module=app (module that need to implement lazy loading)
+
+if you dont want to refactor it
+ng g m Search // Create Module
+ng g c Search //Create Component
+-Note it will automatically register then Search component to Search Module

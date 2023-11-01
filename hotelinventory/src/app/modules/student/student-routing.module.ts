@@ -20,32 +20,32 @@ const routes: Routes = [
     path: '',
     component: StudentlistComponent,
     children: [
-      {
-        path: 'StudentCreate',
-        component: StudentCreateComponent,
-      },
-      {
-        path: ':id',
-        component: StudentInformationComponent, // nested router place components inside of parent components
-      },
+      // {
+      //   path: 'StudentCreate',
+      //   component: StudentCreateComponent,
+      // },
+      // {
+      //   path: ':id',
+      //   component: StudentInformationComponent, // nested router place components inside of parent components
+      // },
     ],
   },
-  {
-    path: 'Body',
-    component: BodyComponent,
-  },
-  {
-    path: 'Sidebar',
-    component: SidebarComponent,
-  },
-  {
-    path: 'SubBody',
-    component: SubbodyComponent,
-  },
   // {
-  //   path: 'studentInformation/:id',
-  //   component: StudentInformationComponent,
+  //   path: 'Body',
+  //   component: BodyComponent,
   // },
+  // {
+  //   path: 'Sidebar',
+  //   component: SidebarComponent,
+  // },
+  // {
+  //   path: 'SubBody',
+  //   component: SubbodyComponent,
+  // },
+  {
+    path: 'studentInformation/:id',
+    component: StudentInformationComponent,
+  },
 ];
 
 @NgModule({

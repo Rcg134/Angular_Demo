@@ -38,8 +38,8 @@ import { BodyComponent } from 'src/app/body/body.component';
     StudentCreateComponent,
   ],
   imports: [
-    StudentRoutingModule,
     CommonModule,
+    StudentRoutingModule,
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,

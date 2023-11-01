@@ -25,8 +25,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
 import { EmailvalidatorDirective } from './validators/emailvalidator/emailvalidator.directive';
+import { LoginServiceService } from './rooms/services/LoginService/login-service.service';
 // import { StudentModule } from './modules/student/student.module'; //For lazy loading
-import { StudentRoutingModule } from './modules/student/student-routing.module';
+// import { StudentRoutingModule } from './modules/student/student-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { StudentRoutingModule } from './modules/student/student-routing.module';
     BrowserModule,
     // StudentModule,
     AppRoutingModule, // if you have child route or custome module , this parent module must always place at the end of this imports
-    StudentRoutingModule,
+    // StudentRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
@@ -64,11 +65,13 @@ import { StudentRoutingModule } from './modules/student/student-routing.module';
       useValue: APP_CONFIG,
     },
     {
-      // register iterceptor
+      // register interceptor
       provide: HTTP_INTERCEPTORS,
       useClass: RequestHttpInterceptor,
       multi: true,
     },
+    LoginServiceService,
+    RequestHttpInterceptor,
   ],
   bootstrap: [AppComponent],
 })

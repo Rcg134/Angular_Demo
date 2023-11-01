@@ -1,36 +1,98 @@
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header bg-gradient-orange text-white">
-          <h2 class="text-center">Login</h2>
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="form-control"
-                required
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">Log In</button>
-          </form>
-        </div>
+<body>
+  <div class="containerLogin" [hidden]="isHiddenLogin">
+    <h2>Login</h2>
+    <form #UserForm="ngForm" (ngSubmit)="Login(UserForm)">
+      <mat-form-field class="col-md-12" appearance="outline">
+        <mat-label>UserName</mat-label>
+        <input
+          #username="ngModel"
+          akeEmailvalidator
+          matInput
+          required="required"
+          [(ngModel)]="UserCred.username"
+          name="username"
+        />
+        <mat-error
+          *ngIf="username?.invalid && (username.dirty || username.touched)"
+        >
+          <ng-container *ngIf="username?.errors?.['required']">
+            The field is required.
+          </ng-container>
+          <ng-container *ngIf="username?.errors?.['validname']">
+            The Username is invalid.
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          #username="ngModel"
+          akeEmailvalidator
+          matInput
+          required="required"
+          type="password"
+          [(ngModel)]="UserCred.password"
+          name="password"
+        />
+        <mat-error
+          *ngIf="username?.invalid && (username.dirty || username.touched)"
+        >
+          <ng-container *ngIf="username?.errors?.['required']">
+            The field is required.
+          </ng-container>
+          <ng-container *ngIf="username?.errors?.['validname']">
+            The Password is invalid.
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+      <div class="form-group">
+        <button type="submit">Login</button>
       </div>
+    </form>
+    <hr />
+    <div class="register">
+      Do you want to register?
+      <a href="javascript:void(0);" (click)="toggleHide()">Register</a>
     </div>
   </div>
-</div>
+
+  <div class="containerRegister" [hidden]="isHiddenRegister">
+    <h2>Register</h2>
+    <form id="register-form" method="post">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="First Name" required />
+      </div>
+      <div class="form-group">
+        <input type="text" name="lastname" placeholder="Last Name" required />
+      </div>
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Username" required />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          name="password"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button type="submit">Register</button>
+      </div>
+      <hr />
+      <div class="register">
+        Do you want to Login?
+        <a href="javascript:void(0);" (click)="toggleHide()">Login</a>
+      </div>
+    </form>
+  </div>
+</body>
