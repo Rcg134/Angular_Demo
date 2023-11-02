@@ -47,7 +47,7 @@
         </mat-error>
       </mat-form-field>
       <div class="form-group">
-        <button type="submit">Login</button>
+        <button type="submit" [disabled]="UserForm.invalid">Login</button>
       </div>
     </form>
     <hr />
@@ -57,6 +57,8 @@
     </div>
   </div>
 
+  <!-- 
+  REGISTRATION -->
   <div class="containerRegister" [hidden]="isHiddenRegister">
     <h2>Register</h2>
     <form id="register-form" method="post">

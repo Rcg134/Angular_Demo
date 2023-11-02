@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginServiceService } from '../rooms/services/LoginService/login-service.service';
 import { HttpInterceptor } from '@angular/common/http';
 import { RequestHttpInterceptor } from '../request-http.interceptor';
+import { AuthLocaStorageService } from '../rooms/services/LocalStorage/auth-loca-storage.service';
 
 @Component({
   selector: 'ake-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor(
     private route: Router,
     private UserService: LoginServiceService,
-    private atecInterceptor: RequestHttpInterceptor
+    private atecInterceptor: RequestHttpInterceptor,
+    private authlocalStorage: AuthLocaStorageService
   ) {
     if (!localStorage.getItem('Token')) {
       this.route.navigate(['Login']);
@@ -37,9 +39,9 @@ export class LoginComponent {
       (data) => {
         if (data.message) {
           this.atecInterceptor.authToken = data.token;
-          localStorage.setItem('Token', data.token);
-          localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem(
+          this.authlocalStorage.SetCredentials('Token', data.token);
+          this.authlocalStorage.SetCredentials('isLoggedIn', 'true');
+          this.authlocalStorage.SetCredentials(
             'Name',
             `${data.userProfile.name} ${data.userProfile.middleName} ${data.userProfile.surname}`
           );

@@ -8,11 +8,18 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { AuthLocaStorageService } from './rooms/services/LocalStorage/auth-loca-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class RequestHttpInterceptor implements HttpInterceptor {
-  authToken = localStorage.getItem('Token');
-  constructor() {}
+  authToken: string = '';
+  constructor(
+    private authlocalStorage: AuthLocaStorageService,
+    private route: Router
+  ) {
+    this.authToken = localStorage.getItem('Token') ?? '';
+  }
 
   intercept(
     request: HttpRequest<unknown>,
@@ -35,7 +42,7 @@ export class RequestHttpInterceptor implements HttpInterceptor {
       return next.handle(newRequesst).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            console.error('Unauthorized');
+            this.authlocalStorage.SessionLogout();
           }
           return throwError(error);
         })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentDataList, StudentList } from '../rooms/student';
 import { StudentService } from '../rooms/services/student.service';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, first, map, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'ake-studentlist',
@@ -12,9 +12,18 @@ export class StudentlistComponent implements OnInit {
   studentsList$: Observable<StudentDataList> | undefined;
   Title = 'Student List';
 
-  getStudent$ = this.stdServ.getStudent();
+  getStudent$: Observable<StudentDataList> | undefined;
 
-  constructor(private stdServ: StudentService) {}
+  constructor(private stdServ: StudentService) {
+    // this.getStudent$ = timer(1000) // Delay for 1 second
+    //   .pipe(
+    //     switchMap(() => {
+    //       return this.stdServ.getStudent();
+    //     }),
+    //     first()
+    //   );
+    this.getStudent$ = this.stdServ.getStudent();
+  }
 
   ngOnInit(): void {
     this.studentsList$ = this.getStudent$;
@@ -25,9 +34,9 @@ export class StudentlistComponent implements OnInit {
     //   // this.studentsList = student;
     // });
     // switch map is use to remove the recent subscription and change it to a new one
-    this.studentsList$ = this.stdServ
-      .getStudent()
-      .pipe(switchMap(() => this.getStudent$));
+    // this.studentsList$ = this.stdServ
+    //   .getStudent()
+    //   .pipe(switchMap(() => this.getStudent$));
   }
 
   addStudentEmit() {
