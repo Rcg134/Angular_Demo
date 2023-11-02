@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StudentDataList, StudentList } from '../rooms/student';
 import { StudentService } from '../rooms/services/student.service';
-import { Observable, first, map, switchMap, timer } from 'rxjs';
+import { Observable, Subscription, first, map, switchMap, timer } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { GenDialogComponent } from '../dialog/gen-dialog/gen-dialog.component';
 
 @Component({
   selector: 'ake-studentlist',
   templateUrl: './studentlist.component.html',
   styleUrls: ['./studentlist.component.scss'],
 })
-export class StudentlistComponent implements OnInit {
+export class StudentlistComponent implements OnInit, OnDestroy {
   studentsList$: Observable<StudentDataList> | undefined;
   Title = 'Student List';
+  private subscriptions: Subscription[] = [];
 
-  getStudent$: Observable<StudentDataList> | undefined;
+  getStudent$ = this.stdServ.getStudent();
 
-  constructor(private stdServ: StudentService) {
+  constructor(private stdServ: StudentService, public dialog: MatDialog) {
     // this.getStudent$ = timer(1000) // Delay for 1 second
     //   .pipe(
     //     switchMap(() => {
@@ -22,7 +25,6 @@ export class StudentlistComponent implements OnInit {
     //     }),
     //     first()
     //   );
-    this.getStudent$ = this.stdServ.getStudent();
   }
 
   ngOnInit(): void {
@@ -34,9 +36,9 @@ export class StudentlistComponent implements OnInit {
     //   // this.studentsList = student;
     // });
     // switch map is use to remove the recent subscription and change it to a new one
-    // this.studentsList$ = this.stdServ
-    //   .getStudent()
-    //   .pipe(switchMap(() => this.getStudent$));
+    this.studentsList$ = this.stdServ
+      .getStudent()
+      .pipe(switchMap(() => this.getStudent$));
   }
 
   addStudentEmit() {
@@ -48,10 +50,13 @@ export class StudentlistComponent implements OnInit {
       subjectId: 2,
     };
 
-    this.stdServ.addStudent(studentadd).subscribe((response) => {
-      alert(response.message);
-      this.loadStudents();
-    });
+    const subscriptionAdd = this.stdServ
+      .addStudent(studentadd)
+      .subscribe((response) => {
+        this.loadStudents();
+      });
+
+    this.subscriptions.push(subscriptionAdd);
   }
 
   updateStudentEmit() {
@@ -63,18 +68,45 @@ export class StudentlistComponent implements OnInit {
       subjectId: 2,
     };
 
-    this.stdServ.updateStudent(2, studentadd).subscribe(
-      (response) => {
-        alert(response.message);
-        this.loadStudents();
-      },
-      (error) => {
-        alert(error.error.error);
-      }
-    );
+    const subscriptionUpdate = this.stdServ
+      .updateStudent(2, studentadd)
+      .subscribe(
+        (response) => {
+          alert(response.message);
+          this.loadStudents();
+        },
+        (error) => {
+          alert(error.error.error);
+        }
+      );
+
+    this.subscriptions.push(subscriptionUpdate);
   }
 
-  deleteStuednt() {}
+  isDelete(student: StudentList) {
+    const dialogRef = this.dialog.open(GenDialogComponent, {
+      data: {
+        btnok: 'Yes',
+        btncancel: 'No',
+        content: 'Are you sure you wanna delete this data?',
+        dialogtitle: 'Delete',
+        bgcolor: 'bgred',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        if (student.id !== undefined) {
+          const subscriptionDelete = this.stdServ
+            .deleteStudent(student.id)
+            .subscribe((response) => {
+              this.loadStudents();
+            });
+          this.subscriptions.push(subscriptionDelete);
+        }
+      }
+    });
+  }
 
   selectStudent(student: StudentList) {
     if (student.id !== undefined) {
@@ -83,5 +115,15 @@ export class StudentlistComponent implements OnInit {
         this.loadStudents();
       });
     }
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from all subscriptions in the ngOnDestroy hook
+    this.subscriptions.forEach((subscription) => {
+      if (subscription) {
+        subscription.unsubscribe();
+        console.log('unsubs');
+      }
+    });
   }
 }

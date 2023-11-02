@@ -46,6 +46,8 @@ export class LoginComponent {
             `${data.userProfile.name} ${data.userProfile.middleName} ${data.userProfile.surname}`
           );
           this.route.navigate(['Student']);
+          //refresh to get the token and remove the delay
+          window.location.reload();
         }
       },
       (error) => {

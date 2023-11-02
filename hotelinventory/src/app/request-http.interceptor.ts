@@ -42,7 +42,7 @@ export class RequestHttpInterceptor implements HttpInterceptor {
       return next.handle(newRequesst).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            this.authlocalStorage.SessionLogout();
+            // this.authlocalStorage.SessionLogout();
           }
           return throwError(error);
         })

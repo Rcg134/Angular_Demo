@@ -17,3 +17,48 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+table {
+    width: 100%; /* Optional: Make the table fill its container horizontally */
+  }
+  
+  th{
+    text-align: center; /* Center-align text content in both header and data cells */
+  }
+  .actionbtn{
+    text-align: center;
+  }
+
+
+
+  .bgred {
+    background: linear-gradient(to right, #FF0000, #FF5733, #FF8C33, #FFAB33, #FFCC33, #FFE733);
+    width: 100%;
+    color: white; 
+    text-align: left;
+    line-height: 100px; 
+     padding: 10px;
+    font-size: 18px;
+  }
+
+
+  .bgblue{
+    background: linear-gradient(to right, #0074E4, #33A1FF, #5AD3FF, #85EFFF, #B0F7FF, #C9FDFF);
+    width: 100%;
+    color: white; 
+    text-align: left;
+    line-height: 100px; 
+     padding: 10px;
+    font-size: 18px;
+  }
+
+
+   .bggreen{
+    background: linear-gradient(to right, #008000, #00FF00, #33FF33, #66FF66, #99FF99, #CCFFCC);
+    width: 100%;
+    color: white; 
+    text-align: left;
+    line-height: 100px; 
+     padding: 10px;
+    font-size: 18px;
+  }
+      

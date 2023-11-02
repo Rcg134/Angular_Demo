@@ -26,6 +26,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
 import { EmailvalidatorDirective } from './validators/emailvalidator/emailvalidator.directive';
 import { LoginServiceService } from './rooms/services/LoginService/login-service.service';
+import { GenDialogComponent } from './dialog/gen-dialog/gen-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 // import { StudentModule } from './modules/student/student.module'; //For lazy loading
 // import { StudentRoutingModule } from './modules/student/student-routing.module';
 
@@ -36,6 +39,7 @@ import { LoginServiceService } from './rooms/services/LoginService/login-service
     NotfoundComponent,
     LoginComponent,
     EmailvalidatorDirective,
+    GenDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -57,6 +61,7 @@ import { LoginServiceService } from './rooms/services/LoginService/login-service
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   providers: [
     {

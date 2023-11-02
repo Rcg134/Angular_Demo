@@ -3,19 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 import { AppNavComponent } from './app-nav/app-nav.component';
-import { RoomListComponent } from './rooms/room-list/room-list.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoginGuard } from 'src/guards/login.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/Login',
+    pathMatch: 'full',
+  },
+
+  {
     path: 'Login',
     component: LoginComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'Login',
-    pathMatch: 'full',
   },
 
   //all the components

@@ -8,9 +8,9 @@
     >
       Add Student
     </button>
-    <button class="btn btn-warning" (click)="updateStudentEmit()">
+    <!-- <button class="btn btn-warning" (click)="updateStudentEmit()">
       Update Student
-    </button>
+    </button> -->
 
     <div *ngIf="studentsList$ | async as data">
       <p>Count: {{ data.count }}</p>
@@ -29,8 +29,17 @@
         <tbody *ngFor="let student of data.studentDetails; let i = index">
           <!-- <tr (click)="selectStudent(student)"> -->
           <tr>
-            <td>
-              <a routerLink="studentInformation/{{ student.id }}"> Select </a>
+            <td class="actionbtn">
+              <a
+                href="javascript:void(0);"
+                routerLink="studentInformation/{{ student.id }}"
+              >
+                Update
+              </a>
+              |
+              <a href="javascript:void(0);" (click)="isDelete(student)">
+                Delete
+              </a>
             </td>
             <td>{{ i }}</td>
             <td>

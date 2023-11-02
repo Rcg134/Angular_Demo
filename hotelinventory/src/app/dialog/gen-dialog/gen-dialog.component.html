@@ -1,0 +1,15 @@
+<h2 [className]="bgcolor" mat-dialog-title [textContent]="dialogtitle"></h2>
+<mat-dialog-content class="mat-typography">
+  <p [textContent]="content"></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [textContent]="btncancel">Cancel</button>
+  <button
+    mat-button
+    [textContent]="btnok"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    Ok
+  </button>
+</mat-dialog-actions>

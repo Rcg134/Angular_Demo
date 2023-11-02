@@ -24,6 +24,7 @@ import { SubbodyComponent } from 'src/app/subbody/subbody.component';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { FooterComponent } from 'src/app/footer/footer.component';
 import { BodyComponent } from 'src/app/body/body.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,8 @@ import { BodyComponent } from 'src/app/body/body.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   exports: [HeaderComponent], // it cant be access outside of this module
 })
