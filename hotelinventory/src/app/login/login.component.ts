@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Login } from '../rooms/login';
 import { Router } from '@angular/router';
@@ -13,13 +13,15 @@ import { AuthLocaStorageService } from '../rooms/services/LocalStorage/auth-loca
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  isAuthenticated = false;
+
   constructor(
     private route: Router,
     private UserService: LoginServiceService,
     private atecInterceptor: RequestHttpInterceptor,
     private authlocalStorage: AuthLocaStorageService
   ) {
-    if (!localStorage.getItem('Token')) {
+    if (this.authlocalStorage.getAuthenticationState() != true) {
       this.route.navigate(['Login']);
     } else {
       this.route.navigate(['Student']);
@@ -38,16 +40,13 @@ export class LoginComponent {
     this.UserService.UserLogin(this.UserCred).subscribe(
       (data) => {
         if (data.message) {
-          this.atecInterceptor.authToken = data.token;
-          this.authlocalStorage.SetCredentials('Token', data.token);
-          this.authlocalStorage.SetCredentials('isLoggedIn', 'true');
           this.authlocalStorage.SetCredentials(
             'Name',
             `${data.userProfile.name} ${data.userProfile.middleName} ${data.userProfile.surname}`
           );
+          this.authlocalStorage.updateAuthenticationState(true);
+          this.authlocalStorage.SetToken(data.token);
           this.route.navigate(['Student']);
-          //refresh to get the token and remove the delay
-          window.location.reload();
         }
       },
       (error) => {

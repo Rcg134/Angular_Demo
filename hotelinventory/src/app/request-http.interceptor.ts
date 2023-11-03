@@ -17,16 +17,14 @@ export class RequestHttpInterceptor implements HttpInterceptor {
   constructor(
     private authlocalStorage: AuthLocaStorageService,
     private route: Router
-  ) {
-    this.authToken = localStorage.getItem('Token') ?? '';
-  }
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     // go to app module to regsiter this
-
+    this.authToken = this.authlocalStorage.GetToken();
     if (
       request.method === 'POST' ||
       request.method === 'GET' ||
@@ -42,7 +40,7 @@ export class RequestHttpInterceptor implements HttpInterceptor {
       return next.handle(newRequesst).pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 401) {
-            // this.authlocalStorage.SessionLogout();
+            this.authlocalStorage.SessionLogout();
           }
           return throwError(error);
         })

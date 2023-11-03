@@ -47,7 +47,9 @@
         </mat-error>
       </mat-form-field>
       <div class="form-group">
-        <button type="submit" [disabled]="UserForm.invalid">Login</button>
+        <button mat-raised-button type="submit" [disabled]="UserForm.invalid">
+          Login
+        </button>
       </div>
     </form>
     <hr />
