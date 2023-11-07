@@ -7,7 +7,7 @@ import { RoomListComponent } from 'src/app/rooms/room-list/room-list.component';
 import { StudentlistComponent } from 'src/app/studentlist/studentlist.component';
 import { StudentInformationComponent } from 'src/app/studentlist/student-information/student-information.component';
 import { StudentCreateComponent } from 'src/app/studentlist/student-create/student-create.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -25,6 +25,7 @@ import { HeaderComponent } from 'src/app/header/header.component';
 import { FooterComponent } from 'src/app/footer/footer.component';
 import { BodyComponent } from 'src/app/body/body.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { StudentUpdateComponent } from 'src/app/studentlist/student-update/student-update.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     StudentlistComponent,
     StudentInformationComponent,
     StudentCreateComponent,
+    StudentUpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -56,6 +58,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     MatDialogModule,
     MatButtonModule,
+    ReactiveFormsModule,
   ],
   exports: [HeaderComponent], // it cant be access outside of this module
 })

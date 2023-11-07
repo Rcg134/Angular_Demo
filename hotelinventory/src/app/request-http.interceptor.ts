@@ -24,7 +24,14 @@ export class RequestHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     // go to app module to regsiter this
-    this.authToken = this.authlocalStorage.GetToken();
+    const isLocalStrageNotNull = localStorage.getItem('Token');
+
+    if (isLocalStrageNotNull) {
+      this.authToken = isLocalStrageNotNull;
+    } else {
+      this.authToken = this.authlocalStorage.GetToken();
+    }
+
     if (
       request.method === 'POST' ||
       request.method === 'GET' ||

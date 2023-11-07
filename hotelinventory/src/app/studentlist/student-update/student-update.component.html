@@ -1,0 +1,144 @@
+<div class="card">
+  <div class="card-header alert alert-warning">
+    <STRONG>UPDATE STUDENT</STRONG>
+  </div>
+  <div class="card-body">
+    <!-- <div *ngIf="SuccessMessage !== undefined" class="row">
+      <div class="col-12-md">
+        <div class="alert alert-success" role="alert">
+          <strong>{{ SuccessMessage }}</strong>
+        </div>
+      </div>
+    </div> -->
+
+    <form [formGroup]="stundentUpdateForm">
+      <div class="row">
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            akeEmailvalidator
+            matInput
+            required="required"
+            formControlName="name"
+            name="name"
+          />
+          <mat-error
+            *ngIf="
+              stundentUpdateForm.get('name')?.invalid &&
+              (stundentUpdateForm.get('name')?.dirty ||
+                stundentUpdateForm.get('name')?.touched)
+            "
+          >
+            <ng-container
+              *ngIf="stundentUpdateForm.get('name')?.errors?.['required']"
+            >
+              Name is required
+            </ng-container>
+            <ng-container
+              *ngIf="stundentUpdateForm.get('name')?.errors?.['validname']"
+            >
+              The name is invalid.
+            </ng-container></mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
+          <mat-label>Middle Name</mat-label>
+          <input
+            matInput
+            required="required"
+            formControlName="middlename"
+            name="middleName"
+          />
+          <mat-error
+            *ngIf="
+              stundentUpdateForm.get('middlename')?.invalid &&
+              (stundentUpdateForm.get('middlename')?.dirty ||
+                stundentUpdateForm.get('middlename')?.touched)
+            "
+          >
+            Middle Name is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
+          <mat-label>Surname </mat-label>
+          <input
+            matInput
+            required="required"
+            formControlName="surname"
+            name="surname"
+          />
+          <mat-error
+            *ngIf="
+              stundentUpdateForm.get('surname')?.invalid &&
+              (stundentUpdateForm.get('surname')?.dirty ||
+                stundentUpdateForm.get('surname')?.touched)
+            "
+          >
+            Surname is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="col-md-4 form-group" appearance="outline">
+          <mat-label>AGE </mat-label>
+          <input
+            matInput
+            type="number"
+            required
+            formControlName="age"
+            name="age"
+            max="100"
+          />
+          <mat-error
+            *ngIf="
+              stundentUpdateForm.get('age')?.invalid &&
+              (stundentUpdateForm.get('age')?.dirty ||
+                stundentUpdateForm.get('age')?.touched)
+            "
+          >
+            Age is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Select Subject</mat-label>
+          <mat-select required formControlName="subjectid" name="subjectName">
+            <mat-option
+              *ngFor="let subject of SubjectList$ | async"
+              [value]="subject.id"
+              >{{ subject.subjectName }}</mat-option
+            >
+          </mat-select>
+
+          <mat-error
+            *ngIf="
+              stundentUpdateForm.get('age')?.invalid &&
+              (stundentUpdateForm.get('age')?.dirty ||
+                stundentUpdateForm.get('age')?.touched)
+            "
+          >
+            Subject is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="button-row">
+        <button
+          [disabled]="
+            stundentUpdateForm.invalid ||
+            !stundentUpdateForm.get('age') ||
+            !stundentUpdateForm.get('subjectid')
+          "
+          type="submit"
+          class="col-md-1"
+          mat-raised-button
+          color="primary"
+        >
+          SAVE
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -21,7 +21,10 @@ export class LoginComponent {
     private atecInterceptor: RequestHttpInterceptor,
     private authlocalStorage: AuthLocaStorageService
   ) {
-    if (this.authlocalStorage.getAuthenticationState() != true) {
+    if (
+      this.authlocalStorage.getAuthenticationState() != true &&
+      this.authlocalStorage.GetCredentials('Token') === null
+    ) {
       this.route.navigate(['Login']);
     } else {
       this.route.navigate(['Student']);
@@ -44,6 +47,8 @@ export class LoginComponent {
             'Name',
             `${data.userProfile.name} ${data.userProfile.middleName} ${data.userProfile.surname}`
           );
+          this.authlocalStorage.SetCredentials('Token', data.token);
+          this.authlocalStorage.SetCredentials('isAuthenticated', 'True');
           this.authlocalStorage.updateAuthenticationState(true);
           this.authlocalStorage.SetToken(data.token);
           this.route.navigate(['Student']);

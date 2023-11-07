@@ -23,7 +23,10 @@ export class LoginGuard implements CanActivate, OnInit {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.authservice.getAuthenticationState() == true) {
+    const isAuthenticatedDfault =
+      this.authservice.getAuthenticationState() == true ||
+      localStorage.getItem('isAuthenticated') === 'True';
+    if (isAuthenticatedDfault) {
       return true;
     } else {
       // Redirect to the login page if the user is not logged in

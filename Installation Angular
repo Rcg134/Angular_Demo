@@ -66,9 +66,12 @@ Go to https://material.angular.io/
 -CREATE DIRECTIVES
 ng g d (name)
 
+-Reactive forms
+Import ReactiveFormsModule
+
 -------------------------------------------MODULE-------------------------------------------
 -Create Module
-ng g m (name) --routing
+ng g m (name) --routings
 
 **\*\*\*\***\*\*\*\***\*\*\*\***\*\***\*\*\*\***\*\*\*\***\*\*\*\***DEPLOYMENT\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***
 ng build -c=production

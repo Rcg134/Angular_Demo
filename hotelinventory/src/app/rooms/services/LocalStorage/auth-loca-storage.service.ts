@@ -33,6 +33,8 @@ export class AuthLocaStorageService {
 
   SessionLogout() {
     this.RemoveCredentials('Name');
+    this.RemoveCredentials('Token');
+    this.RemoveCredentials('isAuthenticated');
     this.updateAuthenticationState(false);
     this.route.navigate(['Login']);
   }

@@ -7,6 +7,7 @@ import { RoomsComponent } from 'src/app/rooms/rooms.component';
 import { SidebarComponent } from 'src/app/sidebar/sidebar.component';
 import { StudentCreateComponent } from 'src/app/studentlist/student-create/student-create.component';
 import { StudentInformationComponent } from 'src/app/studentlist/student-information/student-information.component';
+import { StudentUpdateComponent } from 'src/app/studentlist/student-update/student-update.component';
 import { StudentlistComponent } from 'src/app/studentlist/studentlist.component';
 import { SubbodyComponent } from 'src/app/subbody/subbody.component';
 
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'StudentCreate',
     component: StudentCreateComponent,
+  },
+  {
+    path: 'StudateUpdate',
+    component: StudentUpdateComponent,
   },
 
   {
