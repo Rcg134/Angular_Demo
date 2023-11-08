@@ -11,7 +11,7 @@
       </div>
     </div> -->
 
-    <form [formGroup]="stundentUpdateForm">
+    <form [formGroup]="stundentUpdateForm" (ngSubmit)="SubmitUpdate()">
       <div class="row">
         <mat-form-field class="col-md-4 form-group" appearance="outline">
           <mat-label>Name</mat-label>

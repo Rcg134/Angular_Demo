@@ -69,6 +69,10 @@ ng g d (name)
 -Reactive forms
 Import ReactiveFormsModule
 
+--Nest formgroup
+Use formGroupName to for nest formGroup (14:21) hrs
+https://www.youtube.com/watch?v=3qBXWUpoPHo&t=23765s
+
 -------------------------------------------MODULE-------------------------------------------
 -Create Module
 ng g m (name) --routings

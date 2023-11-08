@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StudentDataList, StudentList } from '../rooms/student';
 import { StudentService } from '../rooms/services/student.service';
-import { Observable, Subscription, first, map, switchMap, timer } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { GenDialogComponent } from '../dialog/gen-dialog/gen-dialog.component';
 
@@ -14,7 +14,6 @@ export class StudentlistComponent implements OnInit, OnDestroy {
   studentsList$: Observable<StudentDataList> | undefined;
   Title = 'Student List';
   private subscriptions: Subscription[] = [];
-
   getStudent$ = this.stdServ.getStudent();
 
   constructor(private stdServ: StudentService, public dialog: MatDialog) {
@@ -59,30 +58,6 @@ export class StudentlistComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscriptionAdd);
   }
 
-  updateStudentEmit() {
-    const studentadd: StudentList = {
-      surname: 'ako2',
-      name: 'sya1',
-      middleName: 'ikaw1',
-      age: 28,
-      subjectId: 2,
-    };
-
-    const subscriptionUpdate = this.stdServ
-      .updateStudent(2, studentadd)
-      .subscribe(
-        (response) => {
-          alert(response.message);
-          this.loadStudents();
-        },
-        (error) => {
-          alert(error.error.error);
-        }
-      );
-
-    this.subscriptions.push(subscriptionUpdate);
-  }
-
   isDelete(student: StudentList) {
     const dialogRef = this.dialog.open(GenDialogComponent, {
       data: {
@@ -94,18 +69,16 @@ export class StudentlistComponent implements OnInit, OnDestroy {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    const subscriptionDelete = dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         if (student.id !== undefined) {
-          const subscriptionDelete = this.stdServ
-            .deleteStudent(student.id)
-            .subscribe((response) => {
-              this.loadStudents();
-            });
-          this.subscriptions.push(subscriptionDelete);
+          this.stdServ.deleteStudent(student.id).subscribe((response) => {
+            this.loadStudents();
+          });
         }
       }
     });
+    this.subscriptions.push(subscriptionDelete);
   }
 
   selectStudent(student: StudentList) {
@@ -120,9 +93,9 @@ export class StudentlistComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // Unsubscribe from all subscriptions in the ngOnDestroy hook
     this.subscriptions.forEach((subscription) => {
+      console.log(subscription);
       if (subscription) {
         subscription.unsubscribe();
-        console.log('unsubs');
       }
     });
   }

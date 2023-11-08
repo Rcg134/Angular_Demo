@@ -17,7 +17,7 @@ const routes: Routes = [
     component: StudentCreateComponent,
   },
   {
-    path: 'StudateUpdate',
+    path: 'StudateUpdate/:id',
     component: StudentUpdateComponent,
   },
 
