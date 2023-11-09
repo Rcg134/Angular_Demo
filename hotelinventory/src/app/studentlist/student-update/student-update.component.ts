@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { StudentService } from 'src/app/rooms/services/student.service';
@@ -28,7 +28,7 @@ export class StudentUpdateComponent implements OnInit, OnDestroy {
     this.stundentUpdateForm = this.fb.group({
       surname: [''],
       middlename: [''],
-      name: [''],
+      name: ['', Validators.required],
       age: [''],
       subjectid: [''],
     });

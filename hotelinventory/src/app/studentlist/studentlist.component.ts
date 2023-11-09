@@ -1,32 +1,44 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StudentDataList, StudentList } from '../rooms/student';
 import { StudentService } from '../rooms/services/student.service';
-import { Observable, Subscription, switchMap } from 'rxjs';
+import { Observable, Subscription, of, switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { GenDialogComponent } from '../dialog/gen-dialog/gen-dialog.component';
+import { PaginationService } from '../rooms/services/paginationService/pagination.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'ake-studentlist',
   templateUrl: './studentlist.component.html',
   styleUrls: ['./studentlist.component.scss'],
 })
-export class StudentlistComponent implements OnInit, OnDestroy {
+export class StudentlistComponent
+  extends PaginationService
+  implements OnInit, OnDestroy
+{
   studentsList$: Observable<StudentDataList> | undefined;
   Title = 'Student List';
   private subscriptions: Subscription[] = [];
-  getStudent$ = this.stdServ.getStudent();
+  getStudent$ = this.stdServ.getStudent(1);
+  pageEvent: PageEvent = new PageEvent();
+
+  //table set up
+  // displayedColumns: string[] = ['Actions', 'Index', 'Name', 'Age', 'Subjects'];
 
   constructor(private stdServ: StudentService, public dialog: MatDialog) {
-    // this.getStudent$ = timer(1000) // Delay for 1 second
-    //   .pipe(
-    //     switchMap(() => {
-    //       return this.stdServ.getStudent();
-    //     }),
-    //     first()
-    //   );
+    super();
   }
 
   ngOnInit(): void {
+    // this.getStudent$.subscribe((data) => {
+    //   this.setPaginationSize(
+    //     data.pages.currentPage,
+    //     data.pages.pageSize,
+    //     data.pages.totalPages,
+    //     data.pages.totalRecords
+    //   );
+    // });
+
     this.studentsList$ = this.getStudent$;
   }
 
@@ -36,7 +48,7 @@ export class StudentlistComponent implements OnInit, OnDestroy {
     // });
     // switch map is use to remove the recent subscription and change it to a new one
     this.studentsList$ = this.stdServ
-      .getStudent()
+      .getStudent(1)
       .pipe(switchMap(() => this.getStudent$));
   }
 
@@ -88,6 +100,13 @@ export class StudentlistComponent implements OnInit, OnDestroy {
         this.loadStudents();
       });
     }
+  }
+
+  updateData(event: PageEvent) {
+    const currentindex = event.pageIndex + 1;
+    this.stdServ.getStudent(currentindex).subscribe((data) => {
+      this.studentsList$ = of(data);
+    });
   }
 
   ngOnDestroy() {

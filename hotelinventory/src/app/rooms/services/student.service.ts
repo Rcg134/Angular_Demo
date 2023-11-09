@@ -16,8 +16,10 @@ export class StudentService {
     private http: HttpClient
   ) {}
 
-  getStudent() {
-    return this.http.get<StudentDataList>('/api/Student/GetStudent');
+  getStudent(currentPage: number) {
+    return this.http.get<StudentDataList>(
+      `/api/Student/GetStudent/${currentPage}`
+    );
   }
 
   addStudent(student: StudentList) {

@@ -26,6 +26,8 @@ import { FooterComponent } from 'src/app/footer/footer.component';
 import { BodyComponent } from 'src/app/body/body.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentUpdateComponent } from 'src/app/studentlist/student-update/student-update.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { StudentUpdateComponent } from 'src/app/studentlist/student-update/stude
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [HeaderComponent], // it cant be access outside of this module
 })

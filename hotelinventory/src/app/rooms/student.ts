@@ -13,7 +13,16 @@ export interface Subject {
   subjectName: string;
 }
 
+export interface Pages {
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
+  totalRecords: number;
+}
+
 export interface StudentDataList {
+  currentPage: Number;
   count: number;
   studentDetails?: StudentList[];
+  pages: Pages;
 }
