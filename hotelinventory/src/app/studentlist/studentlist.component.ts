@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenDialogComponent } from '../dialog/gen-dialog/gen-dialog.component';
 import { PaginationService } from '../rooms/services/paginationService/pagination.service';
 import { PageEvent } from '@angular/material/paginator';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ake-studentlist',
@@ -18,6 +19,7 @@ export class StudentlistComponent
 {
   studentsList$: Observable<StudentDataList> | undefined;
   Title = 'Student List';
+  hasData: boolean = true;
   private subscriptions: Subscription[] = [];
   getStudent$ = this.stdServ.getStudent(1);
   pageEvent: PageEvent = new PageEvent();
@@ -25,10 +27,14 @@ export class StudentlistComponent
   //table set up
   // displayedColumns: string[] = ['Actions', 'Index', 'Name', 'Age', 'Subjects'];
 
-  constructor(private stdServ: StudentService, public dialog: MatDialog) {
+  constructor(
+    private stdServ: StudentService,
+    public dialog: MatDialog,
+    private fb: FormBuilder
+  ) {
     super();
   }
-
+  searchForm!: FormGroup;
   ngOnInit(): void {
     // this.getStudent$.subscribe((data) => {
     //   this.setPaginationSize(
@@ -38,6 +44,10 @@ export class StudentlistComponent
     //     data.pages.totalRecords
     //   );
     // });
+
+    this.searchForm = this.fb.group({
+      searchInput: [''],
+    });
 
     this.studentsList$ = this.getStudent$;
   }
@@ -50,6 +60,7 @@ export class StudentlistComponent
     this.studentsList$ = this.stdServ
       .getStudent(1)
       .pipe(switchMap(() => this.getStudent$));
+    this.hasData = false;
   }
 
   addStudentEmit() {
@@ -104,9 +115,52 @@ export class StudentlistComponent
 
   updateData(event: PageEvent) {
     const currentindex = event.pageIndex + 1;
-    this.stdServ.getStudent(currentindex).subscribe((data) => {
-      this.studentsList$ = of(data);
-    });
+    const searchItem = this.searchForm.get('searchInput')?.value;
+
+    if (searchItem) {
+      this.onSearchFuntion(searchItem, currentindex);
+    } else {
+      this.stdServ.getStudent(currentindex).subscribe((data) => {
+        this.studentsList$ = of(data);
+      });
+    }
+  }
+
+  onSearch() {
+    const searchItem = this.searchForm.get('searchInput')?.value;
+    this.onSearchFuntion(searchItem, 1);
+  }
+
+  onSearchFuntion(searchItem: string, currentPage: number): void {
+    if (searchItem) {
+      this.stdServ.searchStudentData(searchItem, currentPage).subscribe(
+        (data) => {
+          this.hasData = true;
+          const studentNewDataList: StudentDataList = {
+            studentDetails: data.studentDetails,
+            pages: data.pages,
+          };
+
+          this.studentsList$ = of(studentNewDataList);
+        },
+        (error) => {
+          const studentDataEmpty: StudentDataList = {
+            studentDetails: [],
+            pages: {
+              currentPage: 0,
+              totalPages: 0,
+              pageSize: 0,
+              totalRecords: 0,
+            },
+          };
+          this.studentsList$ = of(studentDataEmpty);
+          this.hasData = false;
+        }
+      );
+    } else {
+      this.loadStudents();
+      this.hasData = true;
+    }
   }
 
   ngOnDestroy() {

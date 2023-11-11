@@ -43,6 +43,12 @@ export class StudentService {
     return this.http.get<StudentList>(`/api/Student/SearchStudent/${id}`);
   }
 
+  searchStudentData(searchData: string, currentPage: number) {
+    return this.http.get<StudentDataList>(
+      `/api/Student/SearchStudentData/${searchData}/${currentPage}`
+    );
+  }
+
   getCategory() {
     return this.http.get<Subject[]>('/api/Student/GetSubject');
   }

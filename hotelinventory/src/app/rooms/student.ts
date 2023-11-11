@@ -21,8 +21,6 @@ export interface Pages {
 }
 
 export interface StudentDataList {
-  currentPage: Number;
-  count: number;
   studentDetails?: StudentList[];
   pages: Pages;
 }
