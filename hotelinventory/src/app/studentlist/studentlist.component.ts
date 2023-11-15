@@ -60,7 +60,7 @@ export class StudentlistComponent
     this.studentsList$ = this.stdServ
       .getStudent(1)
       .pipe(switchMap(() => this.getStudent$));
-    this.hasData = false;
+    this.hasData = true;
   }
 
   addStudentEmit() {
